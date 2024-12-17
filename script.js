@@ -42,6 +42,27 @@ window.onload = () => {
     alert("您的设备不支持陀螺仪功能！");
   }
 };
+//结束入场动画
 google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
   document.getElementById('loading').style.display = 'none';
 });
+
+//定位用户位置
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const userLocation = { 
+            lat: position.coords.latitude, 
+            lng: position.coords.longitude 
+        };
+        map.setCenter(userLocation); // 设置地图中心
+        new google.maps.Marker({
+            position: userLocation,
+            map: map,
+            title: "您当前的位置"
+        });
+    }, function() {
+        alert("无法获取您的位置信息，请检查浏览器权限。");
+    });
+} else {
+    alert("您的浏览器不支持定位功能。");
+}
