@@ -4,7 +4,6 @@ let panorama; // 谷歌街景对象
 function initStreetView() {
   const streetViewDiv = document.getElementById("street-view");
 
-  // 设置街景位置（这里是示例坐标）
   //定位用户位置
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
