@@ -1,7 +1,5 @@
 let panorama; // 谷歌街景对象
 
-
-
 // 初始化街景视图
 function initStreetView() {
   const streetViewDiv = document.getElementById("street-view");
