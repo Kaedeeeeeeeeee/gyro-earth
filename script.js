@@ -42,3 +42,6 @@ window.onload = () => {
     alert("您的设备不支持陀螺仪功能！");
   }
 };
+google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+  document.getElementById('loading').style.display = 'none';
+});
