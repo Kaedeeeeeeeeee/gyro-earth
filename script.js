@@ -1,5 +1,28 @@
 let panorama; // 谷歌街景对象
 
+// 当谷歌地图加载完成后隐藏加载动画
+function hideLoadingAnimation() {
+    document.getElementById('loading').style.display = 'none';
+}
+
+// 谷歌地图初始化
+function initMap() {
+    const streetViewService = new google.maps.StreetViewService();
+    const panorama = new google.maps.StreetViewPanorama(
+        document.getElementById('street-view'),
+        {
+            position: { lat: 37.86926, lng: -122.254811 }, // 示例位置
+            pov: { heading: 165, pitch: 0 },
+            zoom: 1,
+        }
+    );
+
+    // 当地图加载完毕时，调用隐藏动画函数
+    google.maps.event.addListenerOnce(panorama, 'tilesloaded', hideLoadingAnimation);
+}
+
+window.onload = initMap;
+
 // 初始化街景视图
 function initStreetView() {
   const streetViewDiv = document.getElementById("street-view");
@@ -59,9 +82,6 @@ window.onload = () => {
     alert("您的设备不支持陀螺仪功能！");
   }
 };
-//结束入场动画
-google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
-  document.getElementById('loading').style.display = 'none';
-});
+
 
 
